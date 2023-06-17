@@ -1,4 +1,5 @@
 import axios from "axios";
+import log from 'log-to-file';
 
 async function getResponse() {
 	try {
