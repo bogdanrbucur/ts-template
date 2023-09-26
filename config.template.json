@@ -1,0 +1,31 @@
+{
+	"url": "https://palapp.asm-maritime.com",
+	"user": "",
+	"pass": "",
+	"vessels": [
+		"Blue Rose",
+		"Chem Altamira",
+		"Chem Alya",
+		"Chem Amsterdam",
+		"Chem Argon",
+		"Chem Cobalt",
+		"Chem Gallium",
+		"Chem Houston",
+		"Chem Hydra",
+		"Chem Lithium",
+		"Chem Lyra",
+		"Chem Mercury",
+		"Chem Neon",
+		"Chem New Orleans",
+		"Chem Norma",
+		"Chem Rotterdam",
+		"Chem Silicon",
+		"Chem Singapore",
+		"Chem Sirius",
+		"Chem Stream",
+		"Chem Taurus",
+		"High Prosperity"
+	],
+	"startDate": "01012023",
+	"endDate": "26092023"
+}

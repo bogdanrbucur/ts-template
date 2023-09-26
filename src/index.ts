@@ -1,31 +1,31 @@
-import axios from "axios";
-import log from 'log-to-file';
+import logDate from "./logdate.js";
+import log from "log-to-file";
+import fs from "fs-extra";
+import getCookie from "./getCookie.js";
+import { getVesselIds } from "./fetch.js";
 
-async function getResponse() {
-	try {
-		let response = await axios.get("https://boredapi.com/api/activity"); // wait for the promise
-		console.log(`2. You could ${response.data.activity}`); // runs after the promise returns
-		console.log("3. this line runs after the promise returns"); // runs after the promise returns
-	} catch (error) {
-		console.log(error);
-	}
-}
+const main = async () => {
+	// build the name of the logfile
+	const logfile: string = logDate();
 
-getResponse()
-	// runs after the entire function is finished
-	.then(async () => {
-		// can be async or not
-		console.log(`4. this line runs after the entire function is finished`);
-		let response = await axios.get("https://boredapi.com/api/activity"); // wait for the promise
-		console.log(`5. You could ${response.data.activity}`); // runs after the promise returns
-	})
-	.then(() => {
-		// not async, because not needed
-		console.log(`6. can keep chaining thens...`);
-	})
-	.catch((error) => {
-		console.log(error);
-	});
+	// read config.json
+	const config = await fs.readJson("./config.json");
+	console.log(`Started application...`);
+	log(`Started application...`, `./logs/${logfile}`);
 
-// runs immediately after the function is called, in essence in parallel with the function
-console.log("1. this line runs immediately after the function is called");
+	const authCookie: string = await getCookie(config.url, config.user, config.pass);
+
+	// TODO for each vessel
+
+	// TODO getVesselIds
+	// TODO get vesselId and/or vesselObjectId
+	await getVesselIds(config.url, authCookie);
+
+	// TODO getPortCalls
+	// TODO using date interval from config.json, get all port calls
+
+	// TODO getCargoForPort
+	// TODO for each port call, get the booking reference, cargo, charterer, activity, quantity, start time, stop time
+};
+
+main();
