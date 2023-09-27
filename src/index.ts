@@ -4,6 +4,7 @@ import fs from "fs-extra";
 import getCookie from "./cookie.js";
 import { getCargoForPort, getPortCalls, getVesselIds } from "./api.js";
 import { Cargo, Vessel } from "./types.js";
+import { writeToExcel } from "./excel.js";
 
 const main = async () => {
 	// build the name of the logfile
@@ -35,8 +36,8 @@ const main = async () => {
 			}
 		});
 	});
-
-	// console.log(vesselsArray);
+	console.log(`Got the list of vessels`);
+	log(`Got the list of vessels`, `./logs/${logfile}`);
 
 	// using date interval from config.json, get all port calls for each vessel
 	for (const v of vessels) {
@@ -50,6 +51,8 @@ const main = async () => {
 				: null;
 		});
 	}
+	console.log(`Got the completed port calls for each vessel`);
+	log(`Got the completed port calls for each vessel`, `./logs/${logfile}`);
 
 	// for each port call of each vessel, get the booking reference, cargo, charterer, activity, quantity, start time, stop time
 	for (const v of vessels) {
@@ -70,11 +73,14 @@ const main = async () => {
 				});
 			});
 		}
-		console.log(v);
+		console.log(`Got the cargoes for each portcall for ${v.VesselName}`);
+		log(`Got the cargoes for each portcall for ${v.VesselName}`, `./logs/${logfile}`);
 	}
+	console.log(`Got the cargoes for each portcall of each vessel`);
+	log(`Got the cargoes for each portcall of each vessel`, `./logs/${logfile}`);
 
-	// TODO write to excel
-	// TODO for each vessel, for each port call, for each cargo
+	// write to excel
+	await writeToExcel(vessels, logfile);
 };
 
 main();
