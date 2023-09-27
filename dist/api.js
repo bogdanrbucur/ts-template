@@ -1,4 +1,7 @@
-export async function getVesselIds(url, cookie) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getCargoForPort = exports.getPortCalls = exports.getVesselIds = void 0;
+async function getVesselIds(url, cookie) {
     // build the Form body
     let bodyFormData = new FormData();
     bodyFormData.append("sort", "");
@@ -20,7 +23,8 @@ export async function getVesselIds(url, cookie) {
     // VesselObjectId: 246074,
     // VesselName: 'CHEM STREAM',
 }
-export async function getPortCalls(url, cookie, vessel, startDate, endDate) {
+exports.getVesselIds = getVesselIds;
+async function getPortCalls(url, cookie, vessel, startDate, endDate) {
     // build the Form body
     let bodyFormData = new FormData();
     bodyFormData.append("sort", "");
@@ -51,7 +55,8 @@ export async function getPortCalls(url, cookie, vessel, startDate, endDate) {
     // LegPortId: 121515
     // LegPortName: 'Rotterdam {NLRTM}, NETHERLANDS',
 }
-export async function getCargoForPort(url, cookie, vessel, VoyageLegPlanningId, LegPortId) {
+exports.getPortCalls = getPortCalls;
+async function getCargoForPort(url, cookie, vessel, VoyageLegPlanningId, LegPortId) {
     // build the Form body
     let bodyData = { VesselId: vessel.VesselId, VesselObjectId: vessel.VesselObjectId, PORTID: LegPortId, LEGDTID: VoyageLegPlanningId };
     const response = await fetch(`${url}/palvoyage/VoyagePAL/CargoLog/GetCargoList`, {
@@ -65,4 +70,5 @@ export async function getCargoForPort(url, cookie, vessel, VoyageLegPlanningId, 
     else
         throw new Error(body.Errors);
 }
+exports.getCargoForPort = getCargoForPort;
 //# sourceMappingURL=api.js.map

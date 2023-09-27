@@ -6,7 +6,7 @@ This script fetches all the cargoes during all the port calls in the configured 
 
 ### config.json
 
-Rename `config.template.jsonc` to `config.json` and fill the required credentials to use the application.
+Rename `config.template.json` to `config.json` and fill the required credentials to use the application.
 
 - `url`: input without trailing slash. eg: <https://palapp.asm-maritime.com>, **not <https://palapp.asm-maritime.com/>**
 - `user`: PAL user used for application login
@@ -26,6 +26,7 @@ Rename `config.template.jsonc` to `config.json` and fill the required credential
 Need to set `"module": "CommonJS"` in `tsconfig.json` for `pkg` to work.
 
 1. [Node.js](https://nodejs.org/en/download) installed
-2. In `/src/cookie.ts` comment line #5 and uncomment #6
-3. Compile with `pkg . -t latest-win-x64 --public`
-4. Keep `config.json`, `./chromium`, `cargo.xlsx` and `./logs` in the local folder
+2. [pkg](https://www.npmjs.com/package/pkg) installed `npm i -g pkg`
+3. In `/src/cookie.ts` comment line #5 and uncomment #6
+4. Compile with `pkg . -t latest-win-x64 --public`
+5. Keep `config.json`, `./chromium`, `cargo.xlsx` and `./logs` in the local folder

@@ -1,8 +1,13 @@
-import puppeteer from "puppeteer";
-export default async function getCookie(url, user, pass) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const puppeteer_1 = __importDefault(require("puppeteer"));
+async function getCookie(url, user, pass) {
     return new Promise(async (resolve, error) => {
         // const browser = await puppeteer.launch({ headless: "new" }); // for running in Node.js
-        const browser = await puppeteer.launch({ executablePath: "./chromium/chrome.exe", headless: "new" }); // for .exe packages
+        const browser = await puppeteer_1.default.launch({ executablePath: "./chromium/chrome.exe", headless: "new" }); // for .exe packages
         const page = await browser.newPage();
         const navigationPromise = page.waitForNavigation();
         // Go to login page
@@ -37,4 +42,5 @@ export default async function getCookie(url, user, pass) {
         }
     });
 }
+exports.default = getCookie;
 //# sourceMappingURL=cookie.js.map
