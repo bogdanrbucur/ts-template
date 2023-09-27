@@ -1,4 +1,4 @@
-import { PortCall, Vessel } from "./types.js";
+import { CargoResponse, PortCall, Vessel } from "./types.js";
 
 export async function getVesselIds(url: string, cookie: string): Promise<Vessel[]> {
 	// build the Form body
@@ -55,9 +55,9 @@ export async function getPortCalls(url: string, cookie: string, vessel: Vessel, 
 	// LegPortName: 'Rotterdam {NLRTM}, NETHERLANDS',
 }
 
-export async function getCargoForPort(url: string, cookie: string, vessel: Vessel, VoyageLegPlanningId: number, LegPortId: number): Promise<[]> {
+export async function getCargoForPort(url: string, cookie: string, vessel: Vessel, VoyageLegPlanningId: number, LegPortId: number): Promise<CargoResponse[]> {
 	// build the Form body
-	let bodyData = { VesselId: "304373", VesselObjectId: "246026", PORTID: "121515", LEGDTID: "6288000000413" };
+	let bodyData = { VesselId: vessel.VesselId, VesselObjectId: vessel.VesselObjectId, PORTID: LegPortId, LEGDTID: VoyageLegPlanningId };
 
 	const response = await fetch(`${url}/palvoyage/VoyagePAL/CargoLog/GetCargoList`, {
 		method: "POST",
@@ -65,16 +65,6 @@ export async function getCargoForPort(url: string, cookie: string, vessel: Vesse
 		body: JSON.stringify(bodyData),
 	});
 	const body = await response.json();
-	console.log(body);
 	if (body.isSuccess) return body.message.cargoCommodityList;
 	else throw new Error(body.Errors);
-
-	// body.message.cargoCommodityList[]
-	// body.message.cargoCommodityList.BookingNo
-	// body.message.cargoCommodityList.CargoActivity
-	// body.message.cargoCommodityList.CargoName
-	// body.message.cargoCommodityList.ChartererName
-	// body.message.cargoCommodityList.LayCanFrom
-	// body.message.cargoCommodityList.LaycanTo
-	// body.message.cargoCommodityList.Quantity
 }

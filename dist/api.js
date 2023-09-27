@@ -53,25 +53,16 @@ export async function getPortCalls(url, cookie, vessel, startDate, endDate) {
 }
 export async function getCargoForPort(url, cookie, vessel, VoyageLegPlanningId, LegPortId) {
     // build the Form body
-    let bodyData = { VesselId: "304373", VesselObjectId: "246026", PORTID: "121515", LEGDTID: "6288000000413" };
+    let bodyData = { VesselId: vessel.VesselId, VesselObjectId: vessel.VesselObjectId, PORTID: LegPortId, LEGDTID: VoyageLegPlanningId };
     const response = await fetch(`${url}/palvoyage/VoyagePAL/CargoLog/GetCargoList`, {
         method: "POST",
         headers: { Cookie: `.BSMAuthCookie=${cookie}`, "Content-Type": "application/json" },
         body: JSON.stringify(bodyData),
     });
     const body = await response.json();
-    console.log(body);
     if (body.isSuccess)
         return body.message.cargoCommodityList;
     else
         throw new Error(body.Errors);
-    // body.message.cargoCommodityList[]
-    // body.message.cargoCommodityList.BookingNo
-    // body.message.cargoCommodityList.CargoActivity
-    // body.message.cargoCommodityList.CargoName
-    // body.message.cargoCommodityList.ChartererName
-    // body.message.cargoCommodityList.LayCanFrom
-    // body.message.cargoCommodityList.LaycanTo
-    // body.message.cargoCommodityList.Quantity
 }
 //# sourceMappingURL=api.js.map

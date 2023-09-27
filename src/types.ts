@@ -23,3 +23,13 @@ export interface Cargo {
 	qty: number;
 	port: string;
 }
+
+export interface CargoResponse {
+	BookingNo: string;
+	CargoActivity: string;
+	CargoName: string;
+	ChartererName: string;
+	LayCanFrom: string;
+	LaycanTo: string;
+	Quantity: number;
+}
