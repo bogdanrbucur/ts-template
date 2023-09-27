@@ -28,4 +28,4 @@ Need to set `"module": "CommonJS"` in `tsconfig.json` for `pkg` to work.
 1. [Node.js](https://nodejs.org/en/download) installed
 2. In `/src/cookie.ts` comment line #5 and uncomment #6
 3. Compile with `pkg . -t latest-win-x64 --public`
-4. Keep `config.jsonc`, `./chromium`, `cargo.xlsx` and `./logs` in the local folder
+4. Keep `config.json`, `./chromium`, `cargo.xlsx` and `./logs` in the local folder

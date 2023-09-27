@@ -1,8 +1,8 @@
 import puppeteer from "puppeteer";
 export default async function getCookie(url, user, pass) {
     return new Promise(async (resolve, error) => {
-        const browser = await puppeteer.launch({ headless: "new" }); // for running in Node.js
-        // const browser = await puppeteer.launch({ executablePath: "./chromium/chrome.exe", headless: "new" }); // for .exe packages
+        // const browser = await puppeteer.launch({ headless: "new" }); // for running in Node.js
+        const browser = await puppeteer.launch({ executablePath: "./chromium/chrome.exe", headless: "new" }); // for .exe packages
         const page = await browser.newPage();
         const navigationPromise = page.waitForNavigation();
         // Go to login page
