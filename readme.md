@@ -1,19 +1,4 @@
-# Vessels Carried Cargo
-
-This script fetches all the cargoes during all the port calls in the configured period for the configured vessels and exports them to `cargo.xlsx`.
-
-## Setup
-
-### config.json
-
-Rename `config.template.json` to `config.json` and fill the required credentials to use the application.
-
-- `url`: input without trailing slash. eg: <https://palapp.asm-maritime.com>, **not <https://palapp.asm-maritime.com/>**
-- `user`: PAL user used for application login
-- `pass`: PAL user password
-- `vessels`: array of strings. As per JSON convention, last item must not have a trailing comma
-- `startDate`: string date in format DD-MMM-YYYY. Example: `01-Jan-2022`
-- `endDate`: string date in format DD-MMM-YYYY. Example: `01-Jan-2022`
+# TypeScript template for starting a new project
 
 ## Compile & run in console
 
@@ -23,10 +8,9 @@ Rename `config.template.json` to `config.json` and fill the required credentials
 
 ## Package to .exe
 
-Need to set `"module": "CommonJS"` in `tsconfig.json` for `pkg` to work.
-
 1. [Node.js](https://nodejs.org/en/download) installed
 2. [pkg](https://www.npmjs.com/package/pkg) installed `npm i -g pkg`
-3. In `/src/cookie.ts` comment line #5 and uncomment #6
-4. Compile with `pkg . -t latest-win-x64 --public`
-5. Keep `config.json`, `./chromium`, `cargo.xlsx` and `./logs` in the local folder
+3. Set `"module": "CommonJS"` in `tsconfig.json`
+4. Start puppeteer from local Chromium `const browser = await puppeteer.launch({ executablePath: "./chromium/chrome.exe", headless: "new" })`
+5. Compile with `pkg . -t latest-win-x64 --public`
+6. Keep `config.json`, `./chromium`, `cargo.xlsx` and `./logs` in the local folder

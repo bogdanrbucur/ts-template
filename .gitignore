@@ -1,5 +1,6 @@
 /node_modules
+/dist
+/chromium
 /logs/*
 config.json
 *.exe
-/chromium
