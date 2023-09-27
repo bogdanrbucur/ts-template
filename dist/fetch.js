@@ -17,5 +17,8 @@ export async function getVesselIds(url, cookie) {
         .catch(function (err) {
         console.log("Unable to fetch -", err);
     });
+    // VesselId: 304400,
+    // VesselObjectId: 246074,
+    // VesselName: 'CHEM STREAM',
 }
 //# sourceMappingURL=fetch.js.map
