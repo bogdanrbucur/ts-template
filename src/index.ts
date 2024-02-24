@@ -17,7 +17,5 @@ if (config.url.endsWith("/")) {
 	config.url = config.url.slice(0, -1);
 }
 
-console.log(config.url);
-
 console.log(`Started application...`);
 log(`Started application...`, `./logs/${logfile}`);
