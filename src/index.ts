@@ -1,15 +1,23 @@
-import logDate from "./logdate.js";
-import log from "log-to-file";
 import fs from "fs-extra";
+import log from "log-to-file";
+import logfile from "./logdate.js";
 
-const main = async () => {
-	// build the name of the logfile
-	const logfile: string = logDate();
+// If ./logs folder doesn't exist, create it
+try {
+	fs.ensureDirSync(`./logs`);
+} catch (err) {
+	console.error(err);
+}
 
-	// read config.json
-	const config = await fs.readJson("./config.json");
-	console.log(`Started application...`);
-	log(`Started application...`, `./logs/${logfile}`);
-};
+// read config.json
+const config = await fs.readJson("./config.json");
 
-main();
+// If config.url ends with a slash, remove it
+if (config.url.endsWith("/")) {
+	config.url = config.url.slice(0, -1);
+}
+
+console.log(config.url);
+
+console.log(`Started application...`);
+log(`Started application...`, `./logs/${logfile}`);
